@@ -1,0 +1,2 @@
+07/05-10:43:02.500000  [**] [1:1000010:1] SERVER-WEBAPP slowloris test [**] [Classification: Attempted Denial of Service] [Priority: 2] {TCP} 172.16.0.1:40005 -> 192.168.10.50:80
+07/05-10:43:03.500000 [**] [1:1000010:1] "SERVER-WEBAPP slowloris test" [**] [Classification: Attempted Denial of Service] [Priority: 2] {TCP} 172.16.0.1:40006 -> 192.168.10.50:80

@@ -1,0 +1,8 @@
+[server]
+maxUploadSize = 20480      # MB - allows big pcaps in the dashboard uploader
+headless = true
+address = "0.0.0.0"
+port = 8501
+
+[browser]
+gatherUsageStats = false
