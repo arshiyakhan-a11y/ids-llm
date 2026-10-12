@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------
+#  Main configuration. Relative paths are relative to this file.
+# ---------------------------------------------------------------
+paths:
+  suricata_eve: logs/suricata/eve.json          # written by Suricata
+  snort_alerts: logs/snort/alert_json.txt       # written by Snort 3 (alert_json)
+  db: data/pipeline.db
+  reports_dir: reports
+  notifications_log: logs/notifications.log
+  assets_file: assets.yaml
+  ml_model: models/iforest.joblib
+
+snort:
+  format: json          # json  = Snort 3 alert_json (recommended, exact epoch time)
+                        # fast  = Snort 2.9 / Snort 3 alert_fast text
+  fast_year: 2017       # alert_fast has no year; CICIDS2017 was captured in 2017
+
+pipeline:
+  poll_interval: 1.0            # seconds to sleep when no new lines
+  batch_lines: 5000             # lines read per source per step
+  aggregation_window_sec: 60    # same sig + src + dst within this gap => one group
+  correlation_window_sec: 300   # alerts of one incident are < this apart
+  correlation_key: pair         # pair (src,dst) | src | dst
+  store_flows: false            # store every flow row (big!). Per-minute stats are always kept.
+
+ml:
+  enabled: false                # stage-4 "AI-based" detector (IsolationForest). Optional.
+  max_events_per_batch: 200
+
+llm:
+  enabled: true
+  model: gpt-4o-mini            # any chat model your key can use
+  interval_sec: 20              # how often the LLM worker looks for work
+  settle_sec: 15                # wait this long (wall clock) after last update of an incident
+  min_risk_score: 30            # skip trivial incidents (saves money)
+  max_incidents_per_cycle: 5
+  max_attempts: 3
+  max_incidents_once: 30        # LLM analyses the TOP-N ranked incidents after an offline run (dashboard can run more)
+  temperature: 0.2
+
+notifications:
+  min_risk_score: 60            # incidents >= this risk produce a notification
+  webhook_url: ""               # optional Slack/Discord-compatible webhook
+  console: true

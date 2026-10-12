@@ -1,0 +1,24 @@
+# Optional knowledge about assets. Everything else is discovered automatically
+# from traffic (stage 1). Roles below follow the public CICIDS2017 dataset
+# description (https://www.unb.ca/cic/datasets/ids-2017.html) - verify for your use.
+internal_nets:
+  - 192.168.10.0/24          # CICIDS2017 victim LAN
+
+assets:
+  192.168.10.50: {role: "Web server (Ubuntu 16.04)",      device_type: "server"}
+  192.168.10.51: {role: "Ubuntu 12 server",               device_type: "server"}
+  192.168.10.3:  {role: "Domain controller / DNS (Win)",  device_type: "server"}
+  192.168.10.1:  {role: "Internal gateway/router",        device_type: "router"}
+  192.168.10.19: {role: "Ubuntu 14.04 workstation",       device_type: "workstation"}
+  192.168.10.17: {role: "Ubuntu 14.04 workstation",       device_type: "workstation"}
+  192.168.10.16: {role: "Ubuntu 16.04 workstation",       device_type: "workstation"}
+  192.168.10.12: {role: "Ubuntu 16.04 workstation",       device_type: "workstation"}
+  192.168.10.9:  {role: "Windows 7 workstation",          device_type: "workstation"}
+  192.168.10.5:  {role: "Windows 8.1 workstation",        device_type: "workstation"}
+  192.168.10.8:  {role: "Windows Vista workstation",      device_type: "workstation"}
+  192.168.10.14: {role: "Windows 10 workstation",         device_type: "workstation"}
+  192.168.10.15: {role: "Windows 10 workstation",         device_type: "workstation"}
+  192.168.10.25: {role: "macOS workstation",              device_type: "workstation"}
+  172.16.0.1:    {role: "Firewall/NAT (attacker traffic appears from here)", device_type: "router"}
+  205.174.165.73: {role: "Attacker (Kali)",               device_type: "attacker"}
+  205.174.165.80: {role: "Firewall public side",          device_type: "router"}
